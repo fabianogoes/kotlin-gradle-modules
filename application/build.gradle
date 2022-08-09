@@ -1,0 +1,17 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation(
+            project(':domain'),
+            project(':rest'),
+            project(':mysql'),
+
+            "org.springframework.boot:spring-boot-starter",
+            "org.springframework.boot:spring-boot-starter-jetty",
+    )
+
+    configurations {
+        compile.exclude module: 'spring-boot-starter-tomcat'
+        compile.exclude group: 'org.apache.tomcat'
+    }
+}

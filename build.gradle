@@ -1,0 +1,47 @@
+buildscript {
+    ext {
+        kotlinVersion              = "1.7.10"
+        dependencyManagementPlugin = "1.0.11.RELEASE"
+        springBootVersion          = "2.7.2"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion"
+
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementPlugin}"
+    }
+}
+
+subprojects {
+    version = "1.0.0-RELEASE"
+
+    apply plugin: "idea"
+    apply plugin: "kotlin"
+    apply plugin: "application"
+    apply plugin: "org.jetbrains.kotlin.jvm"
+
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: "kotlin-spring"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation(
+                "org.jetbrains.kotlin:kotlin-reflect",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
+                "org.springframework.boot:spring-boot",
+                "org.springframework.boot:spring-boot-autoconfigure",
+
+                platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
+        )
+    }
+}

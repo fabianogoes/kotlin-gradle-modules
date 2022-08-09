@@ -1,0 +1,10 @@
+rootProject.name = 'demo-gradle-modules'
+
+include('domain')
+include('application')
+
+include('rest')
+project(':rest').projectDir = file('infra/rest')
+
+include('mysql')
+project(':mysql').projectDir = file('infra/mysql')
